@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Questi sono le migliori canzoni:</h1>
+
+    <section class="songs-list" th:if="songs.size() > 0">
+
+        <ul th:each="song : ${songs}" th:object="${songs}">
+            <li th:text="toString"/>
+        </ul>        
+
+    </section>
+    
+</body>
+</html>

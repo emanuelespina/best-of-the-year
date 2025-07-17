@@ -1,16 +1,21 @@
 package org.bestoftheyear.best_of_the_year.Controller;
 
-import java.time.LocalTime;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bestoftheyear.best_of_the_year.Movie;
+import org.bestoftheyear.best_of_the_year.Song;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import ch.qos.logback.core.model.Model;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+import org.springframework.ui.Model;
+
+
 
 
 @Controller
@@ -19,38 +24,56 @@ import ch.qos.logback.core.model.Model;
 public class HomeController {
 
     @GetMapping
-    public String home(@RequestParam (name = "name") String name, Model model) {
-
-        model.addAttribute("name", name);
-
-        model.addAttibute("time", LocalTime.now());
-
+    public String home(Model model, @RequestParam(name = "name") String name) {
+        
+        model.addAttribute("name" , name);
 
         return "homepage";
     }
     
     
 
-    private Movie getBestMovies(){
+    private List<Movie> getBestMovies(){
 
-        return new Movie();
+        List <Movie> bestMovie = new ArrayList<>();
+
+        bestMovie.add(new Movie("1", "Ready Player One"));
+        bestMovie.add(new Movie("2", "Fast and Furiuos"));
+        bestMovie.add(new Movie("3", "Pacific Rim"));
+
+        return bestMovie;
 
     }
-    
+
+    private List<Song> getBestSong(){
+
+        List <Song> bestSong = new ArrayList<>();
+
+        bestSong.add(new Song("1", "Scream e Shout"));
+        bestSong.add(new Song("2", "Spectre"));
+        bestSong.add(new Song("3", "Hey Baby"));
+
+        return bestSong;
+
+    }    
 
 
-    @GetMapping("/movies")
-    @ResponseBody
-    private String getMovies() {
-        return "<html>"
-            + "<body><h1> Ciao </h1> </body>";
+    @GetMapping("/movies")    
+    public String getMovies(Model model) {
+
+        model.addAttribute("ciccio", getBestMovies());        
+
+        return "movies/index";
+            
     }
 
     @GetMapping("/songs")
-    private String getSongs(@RequestParam String param) {
-        return new String();
-    }      
+    public String getSongs(Model model) {
 
+        model.addAttribute("songs", getBestSong());
+
+        return "songs/index";
+    }  
 
 
 }

@@ -1,12 +1,21 @@
 package org.bestoftheyear.best_of_the_year;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable {
 
     private String id; 
     
     private String name;
    
     public Movie (){}
+
+    public Movie (String id, String name){
+
+        setId(id);
+        setName(name);
+        
+    }
 
     public void setId(String id) {
         this.id = id;
@@ -22,6 +31,14 @@ public class Movie {
 
     public void setName(String name) {
         this.name = name;
-    }          
+    } 
+    
+    @Override
+
+    public String toString(){
+
+        return "Questo film ha id: " + id + " e titolo: " + name; 
+
+    }
 
 }
