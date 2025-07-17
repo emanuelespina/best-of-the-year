@@ -9,7 +9,7 @@ import org.bestoftheyear.best_of_the_year.Song;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -61,7 +61,7 @@ public class HomeController {
     @GetMapping("/movies")    
     public String getMovies(Model model) {
 
-        model.addAttribute("ciccio", getBestMovies());        
+        model.addAttribute("movies", getBestMovies());        
 
         return "movies/index";
             
@@ -74,6 +74,17 @@ public class HomeController {
 
         return "songs/index";
     }  
+
+      @GetMapping("/movies/{id}")    
+    public String getMoviesById(Model model, @PathVariable ("id") Integer moviesId) {
+
+        model.addAttribute("moviesId", moviesId);
+        model.addAttribute("movies", getBestMovies());        
+
+        return "movies/index";
+            
+    }
+
 
 
 }

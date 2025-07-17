@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Best Songs</title>
 </head>
 <body>
 
-    <h1>Questi sono le migliori canzoni:</h1>
+    <h1>Questi sono i migliori film:</h1>
 
-    <section class="songs-list" th:if="songs.size() > 0">
+    <section class="songs-list">
 
-        <ul th:each="song : ${songs}" th:object="${songs}">
-            <li th:text="toString"/>
+        <ul th:each="song : ${songs}">
+
+            <li th:text="${song}"/>
+
         </ul>        
 
     </section>

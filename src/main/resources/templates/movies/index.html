@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Best Films</title>
 </head>
 <body>
 
     <h1>Questi sono i migliori film:</h1>
 
-    <section class="movies-list">
+    <section class="movies-list" th:if="${moviesId <= 0}">
 
-        <p th:text="movies"/>
+        <ul th:each="movie : ${movies}">
 
-        <!-- <ul th:each="movie : ${movies}">
-            <li th:text="movies"/>
-        </ul>         -->
+            <li th:text="${movie}"/>
+
+        </ul>        
+
+    </section>
+
+     <section class="movies-list" th:if="${moviesId > 0}">
+
+        
+            <p th:text="${movies[moviesId - 1]}"/>
+
+          
 
     </section>
     
